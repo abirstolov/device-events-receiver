@@ -1,5 +1,7 @@
 using device_events_receiver;
 using device_events_receiver_library;
+using device_event_router;
+
 using Microsoft.Extensions.Configuration;
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -17,6 +19,7 @@ builder.Services.AddSingleton<IDeviceEventsReceiver, DeviceEventsReceiver>(x => 
         throw new ArgumentException("Missing Settings");
     return new DeviceEventsReceiver(settings.ListeningPort, logging);
 });
+builder.Services.AddSingleton<IDeviceEventsRouter, DeviceEventsRouter>();
 var host = builder.Build();
 
 ILogger log = host.Services.GetRequiredService<ILogger<Program>>();
@@ -28,6 +31,4 @@ if (settings is null)
     log.LogError("Failed loading settings");
     Environment.Exit(-1);
 }
-log.LogInformation($"Listening on port {settings.ListeningPort}");
-
 host.Run();

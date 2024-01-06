@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\device-events-receiver-library\device-events-receiver-library.csproj" />
+    <ProjectReference Include="..\device-event-router\device-event-router.csproj" />
   </ItemGroup>
 
   <!-- <ItemGroup>

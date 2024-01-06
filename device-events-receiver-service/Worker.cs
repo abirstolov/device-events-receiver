@@ -1,15 +1,19 @@
 namespace device_events_receiver;
 using device_events_receiver_library;
+using device_event_router;
 using static String;
 
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
     private readonly IDeviceEventsReceiver _deviceEventsReceiver;
-    public Worker(ILogger<Worker> logger, IDeviceEventsReceiver deviceEventsReceiver)
+    private readonly IDeviceEventsRouter _deviceEventsRouter;
+    public Worker(ILogger<Worker> logger, IDeviceEventsReceiver deviceEventsReceiver, IDeviceEventsRouter deviceEventsRouter)
     {
         _logger = logger;
+        _deviceEventsRouter = deviceEventsRouter;
         _deviceEventsReceiver = deviceEventsReceiver;
+
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -22,6 +26,7 @@ public class Worker : BackgroundService
                 break;
             _logger.LogInformation($"Received {received}");
             _logger.LogInformation("Routing to event broker at: {time}", DateTimeOffset.Now);
+            _deviceEventsRouter.RouteDeviceEvent(received);
             await Task.Delay(1000, stoppingToken);
         }
     }

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "device-events-receiver-serv
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "device-events-receiver-library", "device-events-receiver-library\device-events-receiver-library.csproj", "{665968F2-9DA5-483B-AF1F-C0E804489BD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "device-event-router", "device-event-router\device-event-router.csproj", "{80F48C27-3F3F-4E86-9E5E-3C8485CA32D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{665968F2-9DA5-483B-AF1F-C0E804489BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{665968F2-9DA5-483B-AF1F-C0E804489BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{665968F2-9DA5-483B-AF1F-C0E804489BD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F48C27-3F3F-4E86-9E5E-3C8485CA32D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F48C27-3F3F-4E86-9E5E-3C8485CA32D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F48C27-3F3F-4E86-9E5E-3C8485CA32D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F48C27-3F3F-4E86-9E5E-3C8485CA32D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
