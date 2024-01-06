@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "device-events-receiver-service", "device-events-receiver-service\device-events-receiver-service.csproj", "{F576BB3B-3883-4897-906B-BDB33D97F114}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "device-events-receiver-library", "device-events-receiver-library\device-events-receiver-library.csproj", "{665968F2-9DA5-483B-AF1F-C0E804489BD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F576BB3B-3883-4897-906B-BDB33D97F114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F576BB3B-3883-4897-906B-BDB33D97F114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F576BB3B-3883-4897-906B-BDB33D97F114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F576BB3B-3883-4897-906B-BDB33D97F114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{665968F2-9DA5-483B-AF1F-C0E804489BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{665968F2-9DA5-483B-AF1F-C0E804489BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{665968F2-9DA5-483B-AF1F-C0E804489BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{665968F2-9DA5-483B-AF1F-C0E804489BD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1409F11-1248-4D35-AD17-79B900C6C2DB}
+	EndGlobalSection
+EndGlobal
