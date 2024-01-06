@@ -53,11 +53,6 @@ public class DeviceEventsReceiver : IDeviceEventsReceiver, IDisposable
         }
     }
 
-    public void Process(string received)
-    {
-        _log.LogInformation("Processing {received}", received);
-    }
-
     public void Dispose()
     {
         _log.LogInformation("Dispose() called");

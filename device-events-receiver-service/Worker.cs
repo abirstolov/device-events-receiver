@@ -22,7 +22,6 @@ public class Worker : BackgroundService
                 break;
             _logger.LogInformation($"Received {received}");
             _logger.LogInformation("Routing to event broker at: {time}", DateTimeOffset.Now);
-            //_deviceEventsReceiver.Process(received);
             await Task.Delay(1000, stoppingToken);
         }
     }

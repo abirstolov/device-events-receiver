@@ -9,6 +9,5 @@ namespace device_events_receiver_library
     {
         int ListeningPort { get; }
         public Task<string> GetNextMessageAsync(CancellationToken cancellationToken);
-        public void Process(string received);
     }
 }
