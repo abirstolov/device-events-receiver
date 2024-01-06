@@ -13,7 +13,6 @@ public class Worker : BackgroundService
         _logger = logger;
         _deviceEventsRouter = deviceEventsRouter;
         _deviceEventsReceiver = deviceEventsReceiver;
-
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -24,7 +23,7 @@ public class Worker : BackgroundService
             string received = await _deviceEventsReceiver.GetNextMessageAsync(stoppingToken);
             if (IsNullOrEmpty(received))
                 break;
-            _logger.LogInformation($"Received {received}");
+            _logger.LogInformation("Received {received}", received);
             _logger.LogInformation("Routing to event broker at: {time}", DateTimeOffset.Now);
             _deviceEventsRouter.RouteDeviceEvent(received);
             await Task.Delay(1000, stoppingToken);
