@@ -7,11 +7,13 @@ using Microsoft.Extensions.Logging;
 public class DeviceEventsReceiver : IDeviceEventsReceiver, IDisposable
 {
     public int ListeningPort { get; }
+    public readonly ServerSettings _serverSettings;
     private readonly TcpListener _listener;
     private ILogger _log;
-    public DeviceEventsReceiver(int listeningPort, ILogger<DeviceEventsReceiver> logger)
+    public DeviceEventsReceiver(ServerSettings serverSettings, ILogger<DeviceEventsReceiver> logger)
     {
-        ListeningPort = listeningPort;
+        _serverSettings = serverSettings;
+        ListeningPort = serverSettings.ListeningPort;
         _listener = StartListening();
         _log = logger;
     }
@@ -20,7 +22,7 @@ public class DeviceEventsReceiver : IDeviceEventsReceiver, IDisposable
     {
         IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
         IPAddress ipAddr = ipHost.AddressList[0];
-        var listener = new TcpListener(ipAddr, ListeningPort);
+        var listener = new TcpListener(ipAddr, _serverSettings.ListeningPort);
         listener.Start();
         return listener;
     }

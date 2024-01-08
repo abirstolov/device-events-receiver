@@ -11,21 +11,24 @@ builder.Logging.AddSimpleConsole(configure =>
                     configure.TimestampFormat = "s";
                 });
 builder.Services.AddHostedService<Worker>();
-builder.Services.AddSingleton<IDeviceEventsReceiver, DeviceEventsReceiver>(x => {
+builder.Services.AddSingleton<ServerSettings>(x => {
     var config = x.GetRequiredService<IConfiguration>();
-    var logging = x.GetRequiredService<ILogger<DeviceEventsReceiver>>();
-    var settings = config.GetRequiredSection("Server").Get<Settings>();
-    if (settings is null)
-        throw new ArgumentException("Missing Settings");
-    return new DeviceEventsReceiver(settings.ListeningPort, logging);
+    var serverSettings = config.GetRequiredSection("Server").Get<ServerSettings>() ?? throw new ArgumentException("Missing Settings");
+    return serverSettings;
 });
+builder.Services.AddSingleton<RabbitMQSettings>(x => {
+    var config = x.GetRequiredService<IConfiguration>();
+    var rabbitMQSettings = config.GetRequiredSection("RabbitMQ").Get<RabbitMQSettings>() ?? throw new ArgumentException("Missing Settings");
+    return rabbitMQSettings;
+});
+builder.Services.AddSingleton<IDeviceEventsReceiver, DeviceEventsReceiver>();
 builder.Services.AddSingleton<IDeviceEventsRouter, DeviceEventsRouter>();
 var host = builder.Build();
 
 ILogger log = host.Services.GetRequiredService<ILogger<Program>>();
 
 IConfiguration config = host.Services.GetRequiredService<IConfiguration>();
-Settings? settings = config.GetRequiredSection("Server").Get<Settings>();
+ServerSettings? settings = config.GetRequiredSection("Server").Get<ServerSettings>();
 if (settings is null)
 {
     log.LogError("Failed loading settings");
