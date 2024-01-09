@@ -3,14 +3,20 @@ using device_events_receiver_library;
 using device_event_router;
 
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging.Configuration;
+using Microsoft.Extensions.Logging.EventLog;
 
 var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddWindowsService(options => {
+    options.ServiceName = "Device Events Receiver";
+});
+LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
 builder.Logging.AddSimpleConsole(configure =>
                 {
                     configure.SingleLine = true;
                     configure.TimestampFormat = "s";
                 });
-builder.Services.AddHostedService<Worker>();
+builder.Services.AddHostedService<WindowsService>();
 builder.Services.AddSingleton<ServerSettings>(x => {
     var config = x.GetRequiredService<IConfiguration>();
     var serverSettings = config.GetRequiredSection("Server").Get<ServerSettings>() ?? throw new ArgumentException("Missing Settings");

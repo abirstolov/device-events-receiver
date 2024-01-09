@@ -30,7 +30,7 @@ public class DeviceEventsReceiver : IDeviceEventsReceiver, IDisposable
     const int BufferSize = 512;
     public async Task<string> GetNextMessageAsync(CancellationToken cancellationToken)
     {
-        _log.LogInformation("Waiting for a connection {localEndPoint}", _listener.LocalEndpoint.ToString());
+        _log.LogDebug("Waiting for a connection {localEndPoint}", _listener.LocalEndpoint.ToString());
         TcpClient tcpClient = await _listener.AcceptTcpClientAsync(cancellationToken);
         NetworkStream? stream = null;
         try
@@ -58,7 +58,7 @@ public class DeviceEventsReceiver : IDeviceEventsReceiver, IDisposable
 
     public void Dispose()
     {
-        _log.LogInformation("Dispose() called");
+        _log.LogDebug("Dispose() called");
         _listener?.Stop();
     }
 }
